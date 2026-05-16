@@ -44,58 +44,85 @@ export default function Home() {
 
       {/* HERO */}
       <section
-        className="relative min-h-screen flex items-center justify-center px-6 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1501706362039-c6e13b4d2f3d?q=80&w=2070&auto=format&fit=crop')",
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/40 via-purple-900/40 to-orange-900/40 backdrop-blur-[2px]" />
+  className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden"
+>
 
-        <motion.div
-          initial={{ opacity: 0, y: 80 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="relative z-10 text-center max-w-5xl"
+  {/* IMAGEN FONDO */}
+  <Image
+    src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=2070&auto=format&fit=crop"
+    alt="camion"
+    fill
+    className="object-cover scale-110 blur-[2px]"
+  />
+
+  {/* COLORES DIFUMINADOS */}
+  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/40 via-blue-900/50 to-orange-500/40" />
+
+  {/* EFECTO OSCURO SUAVE */}
+  <div className="absolute inset-0 bg-black/20" />
+
+  {/* GLOW */}
+  <div className="absolute top-[-200px] left-[-200px] w-[500px] h-[500px] bg-cyan-400/30 blur-[120px] rounded-full"></div>
+
+  <div className="absolute bottom-[-200px] right-[-200px] w-[500px] h-[500px] bg-orange-500/30 blur-[120px] rounded-full"></div>
+
+  {/* CONTENIDO */}
+  <motion.div
+    initial={{ opacity: 0, y: 80 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 1 }}
+    className="relative z-10 text-center max-w-5xl"
+  >
+
+    <motion.h1
+      animate={{
+        y: [0, -10, 0],
+      }}
+      transition={{
+        repeat: Infinity,
+        duration: 4,
+      }}
+      className="text-7xl md:text-9xl font-black text-white drop-shadow-[0_0_40px_rgba(255,255,255,0.4)]"
+    >
+      FRANSMUR
+    </motion.h1>
+
+    <p className="mt-8 text-2xl text-white/90">
+      Plataforma inteligente que conecta empresas y transportistas en toda Europa.
+    </p>
+
+    <div className="mt-12 flex flex-wrap justify-center gap-6">
+
+      <a href="#empresa">
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          className="bg-orange-500 hover:bg-orange-600 transition px-10 py-5 rounded-full text-xl font-bold shadow-2xl"
         >
-          <h1 className="text-7xl md:text-9xl font-black bg-gradient-to-r from-cyan-300 via-orange-400 to-red-500 bg-clip-text text-transparent">
-            FRANSMUR
-          </h1>
+          NECESITO TRANSPORTE
+        </motion.button>
+      </a>
 
-          <p className="mt-8 text-2xl text-gray-100">
-            Plataforma inteligente que conecta empresas y transportistas en toda Europa.
-          </p>
+      <a href="#transportista">
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          className="bg-cyan-500 hover:bg-cyan-600 transition px-10 py-5 rounded-full text-xl font-bold shadow-2xl"
+        >
+          TENGO UN CAMIÓN
+        </motion.button>
+      </a>
 
-          <div className="mt-12 flex flex-wrap justify-center gap-6">
+    </div>
 
-            <a href="#empresa">
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                className="bg-orange-500 hover:bg-orange-600 transition px-10 py-5 rounded-full text-xl font-bold shadow-2xl"
-              >
-                NECESITO TRANSPORTE
-              </motion.button>
-            </a>
+  </motion.div>
 
-            <a href="#transportista">
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                className="bg-cyan-500 hover:bg-cyan-600 transition px-10 py-5 rounded-full text-xl font-bold shadow-2xl"
-              >
-                TENGO UN CAMIÓN
-              </motion.button>
-            </a>
-
-          </div>
-        </motion.div>
-      </section>
+</section>
 
       {/* SERVICIOS */}
       <section
         className="relative py-32 px-6 bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=2070&auto=format&fit=crop')",
+              "url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=2070&auto=format&fit=crop')",
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/50 via-black/40 to-red-900/40" />
