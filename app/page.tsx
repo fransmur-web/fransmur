@@ -1,250 +1,427 @@
+"use client";
+
+import Image from "next/image";
+import { motion } from "framer-motion";
+import {
+  Truck,
+  Building2,
+  Globe,
+  Phone,
+  Shield,
+  Clock3,
+} from "lucide-react";
+
+const trucks = [
+  {
+    name: "Mercedes Actros",
+    image:
+      "https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=2070&auto=format&fit=crop",
+    speed: "120 km/h",
+    capacity: "34 toneladas",
+    gps: "GPS Inteligente",
+  },
+  {
+    name: "Volvo FH16",
+    image:
+      "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2070&auto=format&fit=crop",
+    speed: "130 km/h",
+    capacity: "40 toneladas",
+    gps: "Seguimiento Satélite",
+  },
+  {
+    name: "Scania S730",
+    image:
+      "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070&auto=format&fit=crop",
+    speed: "125 km/h",
+    capacity: "38 toneladas",
+    gps: "Monitorización 24/7",
+  },
+];
+
 export default function Home() {
   return (
-    <main className="bg-black text-white overflow-hidden">
-
-      {/* NAVBAR */}
-      <nav className="fixed top-0 w-full z-50 backdrop-blur-xl bg-black/40 border-b border-zinc-800">
-        <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-          
-          <h1 className="text-2xl font-bold tracking-wide">
-            FransMur
-          </h1>
-
-          <div className="hidden md:flex gap-8 text-sm text-zinc-300">
-            <a href="#servicios" className="hover:text-green-400 transition">Servicios</a>
-            <a href="#flota" className="hover:text-green-400 transition">Flota</a>
-            <a href="#rutas" className="hover:text-green-400 transition">Rutas</a>
-            <a href="#contacto" className="hover:text-green-400 transition">Contacto</a>
-          </div>
-
-        </div>
-      </nav>
+    <main className="text-white overflow-hidden scroll-smooth">
 
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center justify-center text-center px-6">
+      <section
+        className="relative min-h-screen flex items-center justify-center px-6 bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1501706362039-c6e13b4d2f3d?q=80&w=2070&auto=format&fit=crop')",
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/40 via-purple-900/40 to-orange-900/40 backdrop-blur-[2px]" />
 
-        <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-black to-black" />
-
-        <div className="relative z-10 max-w-5xl">
-
-          <p className="uppercase tracking-[0.4em] text-green-400 mb-6">
-            Transporte Frigorífico Europeo
-          </p>
-
-          <h1 className="text-6xl md:text-8xl font-black leading-tight">
-            FransMur
-            <br />
-            Logística
+        <motion.div
+          initial={{ opacity: 0, y: 80 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="relative z-10 text-center max-w-5xl"
+        >
+          <h1 className="text-7xl md:text-9xl font-black bg-gradient-to-r from-cyan-300 via-orange-400 to-red-500 bg-clip-text text-transparent">
+            FRANSMUR
           </h1>
 
-          <p className="mt-8 text-zinc-400 text-xl max-w-2xl mx-auto">
-            Especialistas en transporte refrigerado nacional e internacional
-            para productos hortofrutícolas y mercancía perecedera.
+          <p className="mt-8 text-2xl text-gray-100">
+            Plataforma inteligente que conecta empresas y transportistas en toda Europa.
           </p>
 
-          <div className="mt-10 flex flex-col md:flex-row gap-4 justify-center">
+          <div className="mt-12 flex flex-wrap justify-center gap-6">
 
-            <a
-              href="#contacto"
-              className="bg-green-500 hover:bg-green-600 px-8 py-4 rounded-2xl font-semibold transition"
-            >
-              Solicitar Transporte
+            <a href="#empresa">
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                className="bg-orange-500 hover:bg-orange-600 transition px-10 py-5 rounded-full text-xl font-bold shadow-2xl"
+              >
+                NECESITO TRANSPORTE
+              </motion.button>
             </a>
 
-            <a
-              href="#servicios"
-              className="border border-zinc-700 hover:border-white px-8 py-4 rounded-2xl transition"
-            >
-              Ver Servicios
+            <a href="#transportista">
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                className="bg-cyan-500 hover:bg-cyan-600 transition px-10 py-5 rounded-full text-xl font-bold shadow-2xl"
+              >
+                TENGO UN CAMIÓN
+              </motion.button>
             </a>
 
           </div>
-
-        </div>
-      </section>
-
-      {/* ESTADÍSTICAS */}
-      <section className="py-24 border-y border-zinc-900 bg-zinc-950">
-
-        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
-
-          <div>
-            <h3 className="text-5xl font-black text-green-400">18</h3>
-            <p className="text-zinc-500 mt-2">Camiones</p>
-          </div>
-
-          <div>
-            <h3 className="text-5xl font-black text-green-400">25</h3>
-            <p className="text-zinc-500 mt-2">Empleados</p>
-          </div>
-
-          <div>
-            <h3 className="text-5xl font-black text-green-400">24/7</h3>
-            <p className="text-zinc-500 mt-2">GPS Tracking</p>
-          </div>
-
-          <div>
-            <h3 className="text-5xl font-black text-green-400">EU</h3>
-            <p className="text-zinc-500 mt-2">Cobertura</p>
-          </div>
-
-        </div>
-
+        </motion.div>
       </section>
 
       {/* SERVICIOS */}
-      <section id="servicios" className="py-32 px-6">
+      <section
+        className="relative py-32 px-6 bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=2070&auto=format&fit=crop')",
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/50 via-black/40 to-red-900/40" />
 
-        <div className="max-w-7xl mx-auto">
+        <div className="relative z-10">
 
-          <h2 className="text-5xl font-black text-center mb-20">
-            Servicios Logísticos
+          <h2 className="text-6xl font-black text-center mb-20">
+            PLATAFORMA LOGÍSTICA
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-10 max-w-7xl mx-auto">
 
-            <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-10 hover:border-green-500 transition">
+            {[
+              {
+                icon: <Truck size={60} />,
+                title: "Transportistas",
+                text: "Encontramos rutas y cargas para conductores con vehículo propio.",
+              },
+              {
+                icon: <Building2 size={60} />,
+                title: "Empresas",
+                text: "Conectamos mercancías con transportistas disponibles.",
+              },
+              {
+                icon: <Globe size={60} />,
+                title: "Europa",
+                text: "Cobertura internacional con optimización inteligente.",
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                whileHover={{
+                  scale: 1.05,
+                  rotate: 1,
+                }}
+                className="bg-white/10 backdrop-blur-xl p-10 rounded-3xl border border-white/20"
+              >
+                <div className="text-cyan-300 mb-6">
+                  {item.icon}
+                </div>
 
-              <h3 className="text-2xl font-bold mb-5">
-                Transporte Refrigerado
-              </h3>
+                <h3 className="text-3xl font-bold mb-4">
+                  {item.title}
+                </h3>
 
-              <p className="text-zinc-400 leading-7">
-                Transporte nacional e internacional con temperatura controlada,
-                trazabilidad digital y cumplimiento ATP.
-              </p>
+                <p className="text-gray-200">
+                  {item.text}
+                </p>
+              </motion.div>
+            ))}
 
-            </div>
+          </div>
+        </div>
+      </section>
 
-            <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-10 hover:border-green-500 transition">
+      {/* FLOTA */}
+      <section
+        className="relative py-32 px-6 bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=2070&auto=format&fit=crop')",
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-blue-900/50" />
 
-              <h3 className="text-2xl font-bold mb-5">
-                Grupaje Inteligente
-              </h3>
+        <div className="relative z-10">
 
-              <p className="text-zinc-400 leading-7">
-                Soluciones optimizadas para pequeños productores y cargas
-                parciales con máxima eficiencia logística.
-              </p>
+          <h2 className="text-6xl font-black text-center mb-20">
+            NUESTRA FLOTA
+          </h2>
 
-            </div>
+          <div className="grid md:grid-cols-3 gap-10 max-w-7xl mx-auto">
 
-            <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-10 hover:border-green-500 transition">
+            {trucks.map((truck, i) => (
+              <motion.div
+                key={i}
+                whileHover={{
+                  scale: 1.05,
+                  y: -10,
+                }}
+                className="bg-white/10 backdrop-blur-xl rounded-3xl overflow-hidden border border-white/20"
+              >
+                <div className="relative h-80">
 
-              <h3 className="text-2xl font-bold mb-5">
-                Tracking en Tiempo Real
-              </h3>
+                  <Image
+                    src={truck.image}
+                    alt={truck.name}
+                    fill
+                    className="object-cover"
+                  />
 
-              <p className="text-zinc-400 leading-7">
-                Sistemas GPS, control de temperatura y seguimiento operativo
-                24 horas.
-              </p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
 
-            </div>
+                  <div className="absolute bottom-6 left-6">
+                    <h3 className="text-3xl font-black">
+                      {truck.name}
+                    </h3>
+                  </div>
 
+                </div>
+
+                <div className="p-8 space-y-4">
+
+                  <div className="flex justify-between">
+                    <span>Velocidad</span>
+                    <span>{truck.speed}</span>
+                  </div>
+
+                  <div className="flex justify-between">
+                    <span>Capacidad</span>
+                    <span>{truck.capacity}</span>
+                  </div>
+
+                  <div className="flex justify-between">
+                    <span>Sistema</span>
+                    <span>{truck.gps}</span>
+                  </div>
+
+                  <a href="#transportista">
+                    <button className="mt-6 w-full bg-cyan-500 hover:bg-cyan-600 transition py-4 rounded-2xl font-bold">
+                      VER DISPONIBILIDAD
+                    </button>
+                  </a>
+
+                </div>
+              </motion.div>
+            ))}
+
+          </div>
+        </div>
+      </section>
+
+      {/* EMPRESA */}
+      <section
+        id="empresa"
+        className="relative py-32 px-6 bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=2070&auto=format&fit=crop')",
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-900/50 to-blue-900/50" />
+
+        <div className="relative z-10 max-w-5xl mx-auto bg-white/10 backdrop-blur-xl p-12 rounded-3xl border border-white/20">
+
+          <h2 className="text-5xl font-black mb-10">
+            SOY UNA EMPRESA
+          </h2>
+
+          <form
+            action="https://formsubmit.co/pedrorivasver@gmail.com"
+            method="POST"
+            className="grid md:grid-cols-2 gap-6"
+          >
+
+            <input type="hidden" name="_captcha" value="false" />
+
+            <input
+              name="empresa"
+              placeholder="Nombre empresa"
+              className="bg-black/40 p-5 rounded-xl"
+            />
+
+            <input
+              name="telefono"
+              placeholder="Teléfono"
+              className="bg-black/40 p-5 rounded-xl"
+            />
+
+            <input
+              name="mercancia"
+              placeholder="Tipo de mercancía"
+              className="bg-black/40 p-5 rounded-xl"
+            />
+
+            <input
+              name="destino"
+              placeholder="Destino"
+              className="bg-black/40 p-5 rounded-xl"
+            />
+
+            <input
+              name="tipoViaje"
+              placeholder="Tipo de viaje"
+              className="bg-black/40 p-5 rounded-xl"
+            />
+
+            <input
+              name="peso"
+              placeholder="Toneladas"
+              className="bg-black/40 p-5 rounded-xl"
+            />
+
+            <textarea
+              name="descripcion"
+              placeholder="Describe el transporte..."
+              className="bg-black/40 p-5 rounded-xl md:col-span-2 h-40"
+            />
+
+            <button className="md:col-span-2 bg-orange-500 hover:bg-orange-600 transition py-5 rounded-2xl text-2xl font-bold">
+              ENCONTRAR TRANSPORTISTA
+            </button>
+
+          </form>
+        </div>
+      </section>
+
+      {/* TRANSPORTISTA */}
+      <section
+        id="transportista"
+        className="relative py-32 px-6 bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1494412651409-8963ce7935a7?q=80&w=2070&auto=format&fit=crop')",
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-cyan-900/50 to-purple-900/50" />
+
+        <div className="relative z-10 max-w-5xl mx-auto bg-white/10 backdrop-blur-xl p-12 rounded-3xl border border-white/20">
+
+          <h2 className="text-5xl font-black mb-10">
+            SOY TRANSPORTISTA
+          </h2>
+
+          <form
+            action="https://formsubmit.co/pedrorivasver@gmail.com"
+            method="POST"
+            className="grid md:grid-cols-2 gap-6"
+          >
+
+            <input type="hidden" name="_captcha" value="false" />
+
+            <input
+              name="nombre"
+              placeholder="Nombre"
+              className="bg-black/40 p-5 rounded-xl"
+            />
+
+            <input
+              name="telefono"
+              placeholder="Teléfono"
+              className="bg-black/40 p-5 rounded-xl"
+            />
+
+            <input
+              name="añosCarnet"
+              placeholder="Años de carnet"
+              className="bg-black/40 p-5 rounded-xl"
+            />
+
+            <input
+              name="puntos"
+              placeholder="Puntos del carnet"
+              className="bg-black/40 p-5 rounded-xl"
+            />
+
+            <input
+              name="tipoCamion"
+              placeholder="Tipo de camión"
+              className="bg-black/40 p-5 rounded-xl"
+            />
+
+            <input
+              name="rutas"
+              placeholder="Rutas preferidas"
+              className="bg-black/40 p-5 rounded-xl"
+            />
+
+            <input
+              name="capacidad"
+              placeholder="Capacidad de carga"
+              className="bg-black/40 p-5 rounded-xl"
+            />
+
+            <input
+              name="disponibilidad"
+              placeholder="Disponibilidad"
+              className="bg-black/40 p-5 rounded-xl"
+            />
+
+            <textarea
+              name="experiencia"
+              placeholder="Experiencia y observaciones..."
+              className="bg-black/40 p-5 rounded-xl md:col-span-2 h-40"
+            />
+
+            <button className="md:col-span-2 bg-cyan-500 hover:bg-cyan-600 transition py-5 rounded-2xl text-2xl font-bold">
+              BUSCAR EMPRESAS
+            </button>
+
+          </form>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer
+        className="relative py-20 text-center bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070&auto=format&fit=crop')",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/50" />
+
+        <div className="relative z-10 flex flex-wrap justify-center gap-10 mb-10">
+
+          <div className="flex items-center gap-3">
+            <Phone />
+            +34 600 000 000
+          </div>
+
+          <div className="flex items-center gap-3">
+            <Shield />
+            Seguridad Garantizada
+          </div>
+
+          <div className="flex items-center gap-3">
+            <Clock3 />
+            24/7 Disponible
           </div>
 
         </div>
 
-      </section>
-
-      {/* FLOTA */}
-      <section id="flota" className="py-32 bg-zinc-950 px-6">
-
-        <div className="max-w-6xl mx-auto text-center">
-
-          <h2 className="text-5xl font-black mb-10">
-            Flota Moderna
-          </h2>
-
-          <p className="text-zinc-400 text-xl max-w-3xl mx-auto leading-8">
-            Vehículos frigoríficos EURO 6 equipados con sistemas Thermo King,
-            sensores digitales y tecnología avanzada de control térmico.
-          </p>
-
-        </div>
-
-      </section>
-
-      {/* RUTAS */}
-      <section id="rutas" className="py-32 px-6">
-
-        <div className="max-w-6xl mx-auto text-center">
-
-          <h2 className="text-5xl font-black mb-10">
-            Cobertura Europea
-          </h2>
-
-          <p className="text-zinc-400 text-xl leading-8 max-w-3xl mx-auto">
-            Operamos rutas nacionales e internacionales conectando Murcia con
-            Francia, Alemania, Países Bajos, Bélgica e Italia.
-          </p>
-
-        </div>
-
-      </section>
-
-      {/* CONTACTO */}
-      <section id="contacto" className="py-32 bg-zinc-950 px-6">
-
-        <div className="max-w-3xl mx-auto">
-
-          <h2 className="text-5xl font-black text-center mb-16">
-            Solicitar Transporte
-          </h2>
-
-          <form
-            action="https://formsubmit.co/fransmur@gmail.com"
-            method="POST"
-            className="space-y-6"
-          >
-
-            <input
-              type="text"
-              placeholder="Nombre"
-              className="w-full bg-zinc-900 border border-zinc-800 rounded-2xl p-5"
-            />
-
-            <input
-              type="text"
-              placeholder="Empresa"
-              className="w-full bg-zinc-900 border border-zinc-800 rounded-2xl p-5"
-            />
-
-            <input
-              type="email"
-              placeholder="Email"
-              className="w-full bg-zinc-900 border border-zinc-800 rounded-2xl p-5"
-            />
-
-            <input
-              type="tel"
-              placeholder="Teléfono"
-              className="w-full bg-zinc-900 border border-zinc-800 rounded-2xl p-5"
-            />
-
-            <textarea
-              placeholder="Describe el transporte..."
-              rows={5}
-              className="w-full bg-zinc-900 border border-zinc-800 rounded-2xl p-5"
-            />
-
-            <button
-              type="submit"
-              className="w-full bg-green-500 hover:bg-green-600 transition py-5 rounded-2xl font-bold text-lg"
-            >
-              Enviar Solicitud
-            </button>
-
-          </form>
-
-        </div>
-
-      </section>
-
-      {/* FOOTER */}
-      <footer className="border-t border-zinc-900 py-10 text-center text-zinc-600">
-        © 2025 FransMur Logística S.L.
+        <p className="relative z-10 text-gray-200">
+          © 2026 FRANSMUR LOGISTICS
+        </p>
       </footer>
 
     </main>
