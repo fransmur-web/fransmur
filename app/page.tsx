@@ -6,9 +6,15 @@ import { motion, useScroll, useTransform } from "framer-motion";
 export default function Home() {
   const { scrollY } = useScroll();
 
-  const logoScale = useTransform(scrollY, [0, 300], [1, 0.45]);
-  const logoX = useTransform(scrollY, [0, 300], [0, -550]);
-  const logoY = useTransform(scrollY, [0, 300], [0, -220]);
+  const logoScale = useTransform(scrollY, [0, 300], [1, 0.32]);
+
+  const logoX = useTransform(
+    scrollY,
+    [0, 300],
+    [0, -window.innerWidth / 2 + 180]
+  );
+
+  const logoY = useTransform(scrollY, [0, 300], [0, -320]);
 
   const trucks = [
     {
@@ -68,7 +74,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 80 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="relative z-10 text-center max-w-5xl"
+          className="relative z-10 text-center max-w-5xl pt-32"
         >
 
           <motion.h1
@@ -77,7 +83,12 @@ export default function Home() {
               x: logoX,
               y: logoY,
             }}
-            className="text-7xl md:text-9xl font-black text-white drop-shadow-[0_0_40px_rgba(255,255,255,0.5)]"
+            transition={{
+              type: "spring",
+              stiffness: 60,
+              damping: 20,
+            }}
+            className="fixed top-10 left-1/2 z-[9999] -translate-x-1/2 text-7xl md:text-9xl font-black text-white drop-shadow-[0_0_40px_rgba(255,255,255,0.5)] pointer-events-none"
           >
             FRANSMUR
           </motion.h1>
@@ -139,8 +150,7 @@ export default function Home() {
               <p className="text-white/90 leading-8">
                 FransMur Logística S.L. es una Sociedad de Responsabilidad Limitada especializada
                 en el transporte frigorífico de mercancías perecederas tanto a nivel nacional como internacional.
-                La empresa opera desde el Polígono Industrial Oeste de Murcia, uno de los principales
-                núcleos logísticos del sureste español.
+                La empresa opera desde el Polígono Industrial Oeste de Murcia.
               </p>
             </div>
 
@@ -153,9 +163,7 @@ export default function Home() {
                 Nuestra sede se sitúa entre Murcia y Alcantarilla,
                 junto a las autovías A-7 y A-30,
                 permitiendo conexiones rápidas con Madrid,
-                Barcelona, Andalucía y el resto de Europa.
-                Disponemos de acceso cercano al Puerto de Cartagena,
-                Mercamurcia y plataformas logísticas internacionales.
+                Barcelona y el resto de Europa.
               </p>
             </div>
 
@@ -165,10 +173,9 @@ export default function Home() {
               </h3>
 
               <p className="text-white/90 leading-8">
-                Nuestra actividad principal consiste en el transporte
-                frigorífico de productos hortofrutícolas frescos,
-                manteniendo la cadena de frío entre 2°C y 8°C
-                mediante sistemas digitales de control térmico y seguimiento GPS en tiempo real.
+                Operamos con mercancía perecedera y transporte frigorífico,
+                manteniendo temperaturas controladas entre 2°C y 8°C
+                mediante sistemas GPS y control térmico digital.
               </p>
             </div>
 
@@ -178,11 +185,9 @@ export default function Home() {
               </h3>
 
               <p className="text-white/90 leading-8">
-                FransMur Logística S.L. opera conforme a la normativa española y europea:
-                Ley LOTT, Reglamento CE 1072/2009,
-                Convenio CMR, normativa ATP,
-                tacógrafo digital y Reglamento CE 561/2006
-                sobre tiempos de conducción y descanso.
+                FransMur opera conforme a normativa española y europea:
+                LOTT, Convenio CMR, ATP, Reglamento CE 1072/2009
+                y normativa de tacógrafo digital.
               </p>
             </div>
 
@@ -315,7 +320,6 @@ export default function Home() {
                 name="empresa"
                 placeholder="Nombre de empresa"
                 className="w-full p-4 rounded-2xl text-black"
-                required
               />
 
               <input
@@ -323,14 +327,12 @@ export default function Home() {
                 name="telefono"
                 placeholder="Número de contacto"
                 className="w-full p-4 rounded-2xl text-black"
-                required
               />
 
               <textarea
                 name="mercancia"
                 placeholder="Tipo de mercancía y ruta"
                 className="w-full p-4 rounded-2xl text-black h-40"
-                required
               />
 
               <button className="w-full bg-orange-500 hover:bg-orange-600 transition py-4 rounded-2xl font-bold">
@@ -362,7 +364,6 @@ export default function Home() {
                 name="nombre"
                 placeholder="Nombre completo"
                 className="w-full p-4 rounded-2xl text-black"
-                required
               />
 
               <input
@@ -370,7 +371,6 @@ export default function Home() {
                 name="años"
                 placeholder="Años de carnet"
                 className="w-full p-4 rounded-2xl text-black"
-                required
               />
 
               <input
@@ -378,7 +378,6 @@ export default function Home() {
                 name="puntos"
                 placeholder="Puntos del carnet"
                 className="w-full p-4 rounded-2xl text-black"
-                required
               />
 
               <input
@@ -386,21 +385,119 @@ export default function Home() {
                 name="vehiculo"
                 placeholder="Tipo de camión"
                 className="w-full p-4 rounded-2xl text-black"
-                required
               />
 
               <textarea
                 name="rutas"
                 placeholder="Rutas disponibles"
                 className="w-full p-4 rounded-2xl text-black h-40"
-                required
               />
 
               <button className="w-full bg-cyan-500 hover:bg-cyan-600 transition py-4 rounded-2xl font-bold">
-                UNIRME A FRANSMUR
+                INSCRIBIRME
               </button>
 
             </form>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* SOLICITUDES */}
+      <section className="relative py-32 px-6 bg-white text-black">
+
+        <div className="max-w-7xl mx-auto">
+
+          <h2 className="text-6xl font-black text-center mb-20">
+            EMPRESAS QUE SOLICITAN TRANSPORTE
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-8">
+
+            <div className="bg-orange-100 p-8 rounded-3xl shadow-2xl">
+              <h3 className="text-2xl font-black mb-4">
+                Fresh Export Murcia
+              </h3>
+
+              <p><strong>Ruta:</strong> Murcia → Alemania</p>
+              <p><strong>Mercancía:</strong> Lechuga y brócoli</p>
+              <p><strong>Contacto:</strong> 624829182</p>
+              <p><strong>Urgencia:</strong> Alta</p>
+            </div>
+
+            <div className="bg-cyan-100 p-8 rounded-3xl shadow-2xl">
+              <h3 className="text-2xl font-black mb-4">
+                AgroFoods Levante
+              </h3>
+
+              <p><strong>Ruta:</strong> Murcia → Barcelona</p>
+              <p><strong>Mercancía:</strong> Cítricos</p>
+              <p><strong>Contacto:</strong> 687112991</p>
+              <p><strong>Urgencia:</strong> Media</p>
+            </div>
+
+            <div className="bg-blue-100 p-8 rounded-3xl shadow-2xl">
+              <h3 className="text-2xl font-black mb-4">
+                Hortofrutícola Europa
+              </h3>
+
+              <p><strong>Ruta:</strong> Murcia → Países Bajos</p>
+              <p><strong>Mercancía:</strong> Uva y melón</p>
+              <p><strong>Contacto:</strong> 611283771</p>
+              <p><strong>Urgencia:</strong> Muy Alta</p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* TRANSPORTISTAS */}
+      <section className="relative py-32 px-6 bg-gradient-to-br from-orange-500 to-red-600">
+
+        <div className="max-w-7xl mx-auto">
+
+          <h2 className="text-6xl font-black text-center mb-20">
+            TRANSPORTISTAS DISPONIBLES
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-8">
+
+            <div className="bg-white/20 backdrop-blur-xl p-8 rounded-3xl">
+              <h3 className="text-2xl font-black mb-4">
+                José Martínez
+              </h3>
+
+              <p><strong>Camión:</strong> Volvo FH16</p>
+              <p><strong>Carnet:</strong> 14 años</p>
+              <p><strong>Puntos:</strong> 15</p>
+              <p><strong>Ruta:</strong> Nacional e Internacional</p>
+            </div>
+
+            <div className="bg-white/20 backdrop-blur-xl p-8 rounded-3xl">
+              <h3 className="text-2xl font-black mb-4">
+                Antonio López
+              </h3>
+
+              <p><strong>Camión:</strong> Scania S730</p>
+              <p><strong>Carnet:</strong> 9 años</p>
+              <p><strong>Puntos:</strong> 15</p>
+              <p><strong>Ruta:</strong> España y Francia</p>
+            </div>
+
+            <div className="bg-white/20 backdrop-blur-xl p-8 rounded-3xl">
+              <h3 className="text-2xl font-black mb-4">
+                Pedro Ruiz
+              </h3>
+
+              <p><strong>Camión:</strong> Mercedes Actros</p>
+              <p><strong>Carnet:</strong> 17 años</p>
+              <p><strong>Puntos:</strong> 14</p>
+              <p><strong>Ruta:</strong> Internacional</p>
+            </div>
 
           </div>
 
@@ -434,7 +531,7 @@ export default function Home() {
           </p>
 
           <p className="text-white/50 text-sm">
-            © 2026 FransMur Logística S.L. — Todos los derechos reservados
+            © 2026 FransMur Logística S.L.
           </p>
 
         </div>
