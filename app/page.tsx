@@ -1,9 +1,21 @@
 "use client";
+import { useEffect, useState } from "react";
 
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Home() {
+  const [scrolled, setScrolled] = useState(false);
+
+useEffect(() => {
+  const handleScroll = () => {
+    setScrolled(window.scrollY > 120);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
   const { scrollY } = useScroll();
 
   const logoScale = useTransform(scrollY, [0, 300], [1, 0.32]);
@@ -11,7 +23,7 @@ export default function Home() {
   const logoX = useTransform(
     scrollY,
     [0, 300],
-    [0, -window.innerWidth / 2 + 180]
+    [0, -500]
   );
 
   const logoY = useTransform(scrollY, [0, 300], [0, -320]);
@@ -77,23 +89,35 @@ export default function Home() {
           className="relative z-10 text-center max-w-5xl pt-32"
         >
 
-          <motion.h1
-            style={{
-              scale: logoScale,
-              x: logoX,
-              y: logoY,
-            }}
-            transition={{
-              type: "spring",
-              stiffness: 60,
-              damping: 20,
-            }}
-            className="fixed top-10 left-1/2 z-[9999] -translate-x-1/2 text-7xl md:text-9xl font-black text-white drop-shadow-[0_0_40px_rgba(255,255,255,0.5)] pointer-events-none"
-          >
-            FRANSMUR
-          </motion.h1>
+         <motion.div
+  initial={false}
+  animate={{
+    top: scrolled ? 20 : "50%",
+    left: scrolled ? 30 : "50%",
+    x: scrolled ? 0 : "-50%",
+    y: scrolled ? 0 : "-50%",
+    scale: scrolled ? 0.42 : 1,
+  }}
+  transition={{
+    duration: 0.9,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  className="fixed z-[9999]"
+>
+  <h1
+    className={`
+      font-black uppercase tracking-[12px]
+      text-white whitespace-nowrap
+      drop-shadow-[0_0_30px_rgba(255,255,255,0.45)]
+      transition-all duration-700
+      ${scrolled ? "text-3xl" : "text-8xl md:text-[140px]"}
+    `}
+  >
+    FRANSMUR
+  </h1>
+</motion.div>
 
-          <p className="mt-8 text-2xl text-white/90">
+          <p className="mt-44 md:mt-56 text-2xl text-white/90">
             Plataforma logística inteligente especializada en transporte frigorífico nacional e internacional.
           </p>
 
